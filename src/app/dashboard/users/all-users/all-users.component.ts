@@ -110,12 +110,14 @@ export class AllUsersComponent implements OnInit, AfterViewInit {
   }
   deletedata(data: any) {
     // console.log({ data });
-    this.noCodeApiCrud.deleteData(data.id).subscribe((data) => {
-      console.log(data);
+    this.noCodeApiCrud.deleteData(data.id).subscribe((datar) => {
+      console.log(datar);
+      this.dataSource.data.splice(this.dataSource.data.indexOf(data.id), 1);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
   updateData(data: any) {
-
     this.router.navigate(['/dashboard', 'edit', data.id]);
     console.log(data);
     this.noCodeApiCrud.dataget.next(data);
